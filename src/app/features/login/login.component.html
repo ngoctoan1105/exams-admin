@@ -1,0 +1,23 @@
+<div class="background-container">
+    <div class="form-section">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+            <div class="form-title">ĐĂNG NHẬP</div>
+            <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <div class="input-group-icon">
+                    <div class="icon-group"><i class="fas fa-user-alt"></i></div><input class="form-control"
+                        formControlName="username" type="text" style="border-radius: 0 .25rem .25rem 0;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <div class="input-group-icon">
+                    <div class="icon-group"><i class="fas fa-key"></i></div><input class="form-control"
+                        formControlName="password" [type]="eye == show_eye ? 'text' : 'password'" style="border-radius: 0" /><div class="icon-group" (click)="togglePassword()"><i [class]="eye"></i></div>
+                </div>
+            </div>
+            <div *ngIf="loginError" style="color: red; font-style: italic;">Đăng nhập không thành công</div>
+            <button type="submit" class="btn btn-store">Đăng nhập</button>
+        </form>
+    </div>
+</div>

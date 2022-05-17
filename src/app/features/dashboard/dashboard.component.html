@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-start">
+  <mat-form-field appearance="outline" class="flx-bs-30">
+    <mat-label>Thời gian</mat-label>
+    <mat-select [(ngModel)]="filterSelected">
+      <mat-option *ngFor="let filter of filterDate" [value]="filter.value">
+        {{filter.text}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <ng-container *ngIf="filterSelected === 'custom'">
+    <mat-form-field appearance="outline" class="flx-bs-30">
+      <mat-label>Ngày bắt đầu</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="fromDate">
+      <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="flx-bs-30">
+      <mat-label>Ngày kết thúc</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="toDate">
+      <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </ng-container>
+  <div class="flx-btn">
+    <button mat-flat-button (click)="search()" color="primary" class="h-100">
+      <mat-icon>search</mat-icon>Lọc</button>
+  </div>
+</div>
+<br>
+<h2>Danh sách khóa học bán chạy nhất</h2>
+<div class="d-flex justify-content-start flex-wrap">
+  <div class="flx-bs-20" *ngFor="let course of courses">
+    <img [src]="'../../../assets/img/'+course.img" class="course-img">
+    <h5>{{course.name}}</h5>
+    <h5>{{course.author}}</h5>
+    <h6>Số người mua: {{course.count}}</h6>
+  </div>
+</div>
+<br>
+<ejs-chart *ngIf="data?.length || data1?.length" style='display:block' align='center' id='chartcontainer'
+  [title]='title' [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis' [tooltip]='tooltip' (load)='load($event)'
+  [chartArea]='chartArea' [width]='width'>
+  <e-series-collection>
+    <e-series [dataSource]='data' type='Line' xName='x' yName='y' name='Số người dùng tham gia' width=2
+      [marker]='marker'> </e-series>
+    <e-series [dataSource]='data1' type='Line' xName='x' yName='y' name='Số giảng viên tham gia' width=2
+      [marker]='marker'> </e-series>
+  </e-series-collection>
+</ejs-chart>

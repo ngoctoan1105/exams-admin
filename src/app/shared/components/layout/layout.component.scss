@@ -1,0 +1,311 @@
+.admin-container {
+  .sidebar-container {
+    width: 250px;
+    height: 100vh;
+    background-color: #1f2937;
+    color: #90a0b7;
+    transition: all 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .logo-container {
+      width: 100%;
+      height: 80px;
+      text-align: center;
+      background: #232e3e;
+      .sidebar-logo {
+        width: auto;
+        height: auto;
+        max-height: 80px;
+        max-width: 250px;
+      }
+    }
+    .sidebar-menu {
+      padding: 20px 0;
+      .menu-item {
+        width: 100%;
+        padding: 10px 20px;
+        font-size: 20px;
+        font-weight: 500;
+        &:hover {
+          color: #fff;
+          cursor: pointer;
+        }
+        .icon-block {
+          width: 20px;
+          display: inline-block;
+          text-align: center;
+        }
+      }
+      .menu-active {
+        background-color: #00000033;
+        color: #fff;
+      }
+    }
+  }
+  .main-container {
+    min-height: 100vh;
+    transition: all 0.3s;
+    background-color: #ebeef2;
+    padding-bottom: 10px;
+    .user-container {
+      width: 100%;
+      height: 80px;
+      padding: 0 20px;
+      background-color: #fff;
+      color: #2f3c4e;
+      display: flex;
+      justify-content: space-between;
+      .account {
+        padding: 0 20px;
+        display: inline-block;
+        cursor: pointer;
+        line-height: 80px;
+        font-size: 20px;
+        font-weight: 500;
+        &:hover {
+          .dropdown {
+            cursor: pointer;
+            display: block;
+            background-color: #fff;
+            animation-name: open-dropdown;
+            animation-duration: 2s;
+          }
+        }
+        .dropdown {
+          display: none;
+          line-height: initial;
+          padding: 10px 20px;
+          border: 1px solid;
+          border-radius: 10px;
+          position: absolute;
+          top: 80px;
+          z-index: 1;
+          margin: 0 20px;
+          & > div:hover {
+            color: #2f3c4e;
+          }
+        }
+      }
+      @keyframes open-dropdown {
+        0% {
+          transform: perspective(600px) rotateX(90deg);
+          opacity: 0;
+        }
+        40% {
+          transform: perspective(600px) rotateX(-10deg);
+        }
+        70% {
+          transform: perspective(600px) rotateX(10deg);
+        }
+        100% {
+          transform: perspective(600px) rotateX(0deg);
+          opacity: 1;
+        }
+      }
+      .toggle-btn {
+        height: 40px;
+        width: 40px;
+        font-size: 40px;
+        margin: 20px 0;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .user-btn {
+        width: 40px;
+        height: 40px;
+        .user-img {
+          height: 100%;
+        }
+      }
+      .rotate-left {
+        animation-name: rotate180;
+        animation-duration: 0.3s;
+        transform: rotate(-180deg);
+      }
+      .rotate-right {
+        animation-name: rotate0;
+        animation-duration: 0.3s;
+        transform: rotate(0deg);
+      }
+    }
+    .content-container {
+      margin: 40px;
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 2px 3px 6px 2px #0000004f;
+      background-color: #fff;
+    }
+  }
+}
+.sidebar-close {
+  & > .sidebar-container {
+    left: -250px;
+  }
+  & > .main-container {
+    margin-left: 0;
+  }
+}
+.order-notify-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9;
+  width: 250px;
+  background: #334155;
+  color: #fff;
+  padding: 20px;
+  border: 1px solid #b1b1b1;
+  border-radius: 10px;
+  animation-name: notify;
+  animation-duration: 0.8s;
+  box-shadow: 0px 1px 8px 3px #8f8f8f;
+}
+@keyframes notify {
+  0% {
+    opacity: 0;
+    box-shadow: 0px 1px 8px 0px #8f8f8f;
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0px 1px 8px 3px #8f8f8f;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sidebar-container {
+    z-index: 99;
+  }
+  .main-container {
+    min-height: 100vh;
+    margin-left: 0;
+    .user-container {
+      flex-direction: row-reverse;
+    }
+  }
+  .sidebar-close {
+    & > .main-container {
+      margin-left: 0;
+    }
+  }
+  .dropdown {
+    left: 20px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1366px) {
+  .main-container {
+    min-height: 100vh;
+    margin-left: 250px;
+  }
+  .sidebar-close {
+    & > .main-container {
+      margin-left: 0;
+    }
+  }
+  .dropdown {
+    right: 20px;
+  }
+}
+@media screen and (min-width: 1367px) {
+  .main-container {
+    min-height: 100vh;
+    margin-left: 250px;
+  }
+  .sidebar-close {
+    & > .main-container {
+      margin-left: 0;
+    }
+  }
+  .dropdown {
+    right: 20px;
+  }
+}
+::ng-deep {
+  @media screen and (max-width: 768px) {
+    .e-dlg-container > .e-dialog {
+      width: 80% !important;
+    }
+    .e-pager .e-pagercontainer {
+      display: inline-block !important;
+    }
+    .e-pager {
+      .e-mfirst,
+      .e-mprev,
+      .e-mnext,
+      .e-mlast,
+      .e-parentmsgbar {
+        display: none !important;
+      }
+    }
+  }
+  @media screen and (max-width: 1366px) and (min-width: 769px) {
+    .e-dlg-container > .e-dialog {
+      width: 600px !important;
+    }
+  }
+  @media screen and (min-width: 1367px) {
+    .e-dlg-container > .e-dialog {
+      width: 800px !important;
+    }
+  }
+  .e-dlg-header-content {
+    background-color: #1f2937 !important;
+  }
+  .e-dialog .e-dlg-header {
+    color: #fff !important;
+  }
+  .e-dlg-closeicon-btn {
+    & > .e-btn-icon {
+      color: #fff !important;
+    }
+    &:hover > .e-btn-icon {
+      color: #000 !important;
+    }
+  }
+  .e-dialog .e-dlg-content {
+    padding-top: 18px !important;
+  }
+  .e-toolbar {
+    width: 100% !important;
+  }
+  .e-gridheader {
+    width: 100% !important;
+  }
+  .e-headercell {
+    background: #334155 !important ;
+    color: #fff !important;
+    padding: 0 10px !important;
+    .e-headercelldiv {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  .e-rowcell {
+    padding: 0 10px !important;
+    height: 38px !important;
+  }
+  .e-pager .e-currentitem,
+  .e-pager .e-currentitem:hover {
+    background-color: #334155 !important;
+  }
+  .e-btn .e-btn-icon {
+    font-size: 16px !important;
+  }
+}
+@keyframes rotate180 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+@keyframes rotate0 {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}

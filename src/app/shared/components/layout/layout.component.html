@@ -1,0 +1,28 @@
+<div class="admin-container" [class]="open ? '' : 'sidebar-close'">
+  <div class="sidebar-container">
+    <div class="logo-container"><img class="sidebar-logo" src="../../../../assets/img/logo.png" /></div>
+    <div class="sidebar-menu">
+      <ng-container *ngFor="let item of menu">
+        <!-- {{item.name}} -->
+        <div [class]="'menu-item'" [routerLink]="[item.link]"
+          routerLinkActive="menu-active">
+          <div class="icon-block"><i [class]="item.icon"></i></div> {{item.name}}
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="main-container">
+    <div class="user-container">
+      <i class="fas fa-bars toggle-btn" (click)="toggle()"></i>
+      <div class="account">
+        <div><i class="far fa-user"></i>{{user?.last_name}}</div>
+        <div class="dropdown">
+          <div (click)="logOut()">Đăng xuất</div>
+        </div>
+      </div>
+    </div>
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

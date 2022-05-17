@@ -1,0 +1,11 @@
+:host {
+  table {
+    width: 100%;
+  }
+  .cursor-point {
+    cursor: pointer;
+  }
+}
+:host::ng-deep .cdk-overlay-pane {
+  width: 400px !important;
+}
